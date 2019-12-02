@@ -1,0 +1,29 @@
+<div class="col-md-8">
+<h1>Clientes</h1>
+<label>Nome</label>
+<input class="form-control" [(ngModel)]="cliente.NOME">
+<label>Email</label>
+<input class="form-control"[(ngModel)]="cliente.EMAIL">
+<label>Idade</label>
+<input class="form-control" type="number"[(ngModel)]="cliente.IDADE">
+<button class="btn btn-success" (click)="salvar()">Salvar</button>
+<br>
+<table class="table table-striped">
+ <thead>
+   <tr>
+    <th>Nome</th>
+    <th>Email</th>
+    <th>Idade</th>
+   </tr>
+ </thead>
+ <tbody *ngFor="let cliente of clientes">
+   <tr>
+    <td>{{cliente.NOME}}</td>
+    <td>{{cliente.EMAIL}}</td>
+    <td>{{cliente.IDADE}}</td>
+    <td><button class="btn btn-danger" (click)="remover(cliente.ID)">Remover</button></td>
+    <td><button class="btn btn-warning"(click)="editar(cliente.ID)">Editar</button></td>
+   </tr>
+ </tbody>
+</table>
+</div>
