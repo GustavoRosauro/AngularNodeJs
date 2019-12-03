@@ -1,6 +1,9 @@
 const express = require('express')
 const app = express();
 const mysql = require('mysql');
+const fs = require('fs');
+const path = require('path')
+const http = require('http');
 const bodyParser = require('body-parser');
 app.use(bodyParser.urlencoded({extended:true}));
 app.use((req,res,next)=>{
@@ -25,6 +28,9 @@ con.connect((err)=>{
 app.listen(3000,()=>{
     console.log('porta 3000 ativa');
 })
+app.use(express.static(__dirname+'/nodejsAngular/dist/nodejsAngular/'))
+app.get('/',(req,res)=>res.sendFile(path.join(__dirname)));
+const server = http.createServer(app);
 app.use(express.json());
 app.get('/clientes',(req,res)=>{
     con.query(`SELECT ID,
